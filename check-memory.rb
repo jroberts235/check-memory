@@ -4,7 +4,7 @@
 # Values for critical and warning levels are given in percentages
 # from the command line; first WARN% then CRITCAL%.
 
-if ARGV[0] == nil
+if !ARGV[0]
   puts "You must supply first then warn-level %, then critical-level %."
   puts "Example: check-memory 90 95"
   exit
