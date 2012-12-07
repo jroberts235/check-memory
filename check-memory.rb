@@ -15,7 +15,7 @@ if !FileTest.exists?("/usr/bin/ohai")
   exit
 end
 
-require 'rubygems'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'json'
 require 'sensu-plugin/check/cli'
 
