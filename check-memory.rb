@@ -4,7 +4,7 @@
 # Values for critical and warning levels are given in percentages
 # from the command line; first WARN% then CRITCAL%.
 
-if !ARGV[0]
+if !ARGV[0] 
   puts "You must supply first then warn-level %, then critical-level %."
   puts "Example: check-memory 90 95"
   exit
@@ -31,13 +31,14 @@ class CheckMemoryUsage < Sensu::Plugin::Check::CLI
     free = stats['memory']['free'].to_f
     total = stats['memory']['total'].to_f
     usage = (((total - free) / total)*100).round
+    message = "Memory usage at #{usage}%"
 
     if (usage  >= warn_level && usage < critical_level )
-      warning "Memory usage at #{usage}%"
+      warning message
     elsif  usage >= critical_level
-      critical "Memory usage at #{usage}%"
+      critical message
     else
-      ok "Memory usage at #{usage}%"
+      ok message
     end
   end
 end
